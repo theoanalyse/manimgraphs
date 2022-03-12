@@ -63,7 +63,7 @@ class PaulErdos(Scene):
         hi = MathTex(r"\text{Hi!}").scale(4)
 
         erdos= ImageMobject("erdos.gif").scale(1.2).to_edge(RIGHT, buff=2)
-        
+
         text = MarkupText("<u>Paul Erdös (1947)</u>").next_to(erdos, DOWN * 1.5).scale(0.8)
 
         # quote = MarkupText("\"I hope we'll be able to solve\nthese problems before we leave.\"").next_to(erdos, LEFT * 3).scale(0.7)
@@ -107,11 +107,13 @@ class PaulErdos(Scene):
 
         # self.play(Write(prob))
         self.play(FadeOut(g2), FadeOut(rect))
-        
+
         self.wait()
 
+class Proposition(Scene):
+    def construct():
         postulate = MarkupText("If, in a given set of objects, the probability that all object does not\nhave a certain property is less than 1. Then there must exist an object\nwith this property.")
-        postulate.scale(0.6) 
+        postulate.scale(0.6)
 
         self.play(Write(postulate), run_time=6)
         self.wait()
@@ -130,7 +132,7 @@ class PaulErdos(Scene):
         # property
         self.play(postulate[70:78].animate.set_color("#ef639c"))
         self.wait()
-        
+
         # exists
         self.play(postulate[103:108].animate.set_color("#fb5607"))
         self.wait()
@@ -145,8 +147,10 @@ class PaulErdos(Scene):
 
         self.play(FadeOut(postulate))
 
-        """ --- Ramsey numbers --- """
+""" --- Ramsey numbers --- """
 
+class Ramsey(Scene):
+    def construct():
         title2 = MarkupText("Ramsey Numbers").to_edge(UP, buff=0.5)
 
         self.play(Transform(title, title2))
@@ -256,7 +260,3 @@ class PaulErdos(Scene):
         # i.e. pour un graphe donné, P(arrête est rouge) = P(arrête est bleue) = 1/2 pour tout arrête dans le graphe.
 
         self.wait(10)
-
-        
-
-
