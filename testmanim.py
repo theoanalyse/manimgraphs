@@ -111,7 +111,7 @@ class PaulErdos(Scene):
         self.wait()
 
 class Proposition(Scene):
-    def construct():
+    def construct(self):
         postulate = MarkupText("If, in a given set of objects, the probability that all object does not\nhave a certain property is less than 1. Then there must exist an object\nwith this property.")
         postulate.scale(0.6)
 
@@ -147,10 +147,129 @@ class Proposition(Scene):
 
         self.play(FadeOut(postulate))
 
+
+class FirstExercise(Scene):
+    def construct(self):
+        title = MarkupText("2-Coloring Game").to_edge(UP, buff=0.5)
+        h_line = Line(LEFT, RIGHT).scale(config.frame_width/2-1).next_to(title, DOWN)
+
+        self.play(Create(h_line), Write(title), run_time=2)
+        self.wait()
+
+        begin_brace = MathTex("X = \\biggl\{").move_to(3*LEFT + 1*UP).scale(1.2)
+        sq = Square(color="#FFFFFF", fill_opacity=0).scale(0.4).next_to(begin_brace, RIGHT)
+        tr = Triangle(color="#FFFFFF", fill_opacity=0).scale(0.5).next_to(sq, RIGHT)
+        cr = Circle(color="#FFFFFF", fill_opacity=0).scale(0.4).next_to(tr, RIGHT)
+        st = Star(color="#FFFFFF", fill_opacity=0).scale(0.5).next_to(cr, RIGHT)
+        end_brace = MathTex("\\biggr\}").next_to(st, RIGHT).scale(1.2)
+        X = Group(begin_brace, sq, tr, cr, st, end_brace).arrange(RIGHT).shift(UP)
+
+        start = MathTex("\mathcal F = \\biggl\{").move_to(DOWN).scale(1.2)
+
+        A10 = MathTex("A_1 = \{")
+        A11 = sq.copy().scale(0.5).next_to(A10, RIGHT)
+        A12 = tr.copy().scale(0.5).next_to(A11, RIGHT)
+        A13 = MathTex("\}").next_to(A12, RIGHT)
+        A1 = Group(A10, A11, A12, A13).arrange(RIGHT)
+
+        A20 = MathTex("A_2 = \{")
+        A21 = sq.copy().scale(0.5).next_to(A20, RIGHT)
+        A22 = cr.copy().scale(0.5).next_to(A21, RIGHT)
+        A23 = MathTex("\}").next_to(A22, RIGHT)
+        A2 = Group(A20, A21, A22, A23).arrange(RIGHT)
+
+        A30 = MathTex("A_3 = \{")
+        A31 = tr.copy().scale(0.5).next_to(A30, RIGHT)
+        A32 = st.copy().scale(0.5).next_to(A31, RIGHT)
+        A33 = MathTex("\}").next_to(A32, RIGHT)
+        A3 = Group(A30, A31, A32, A33).arrange(RIGHT)
+
+        A40 = MathTex("A_4 = \{")
+        A41 = tr.copy().scale(0.5).next_to(A40, RIGHT)
+        A42 = cr.copy().scale(0.5).next_to(A41, RIGHT)
+        A43 = MathTex("\}").next_to(A42, RIGHT)
+        A4 = Group(A40, A41, A42, A43).arrange(RIGHT)
+
+        F = Group(A1, A2, A3, A4).arrange_in_grid(2, 2).shift(2*DOWN).scale(1.5)
+
+        sqs = [sq, tr, cr, st]
+
+        self.play(FadeIn(X))
+        self.wait()
+
+        self.play(GrowFromCenter(A1))
+        self.wait(2)
+
+        colors = [RED, BLUE, BLUE, RED]
+
+        # first step
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)])
+        self.play(A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7))
+        self.wait()
+
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)])
+        self.play(A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[1], opacity=0))
+        self.wait()
+
+        # second phase
+        self.play(GrowFromCenter(A2))
+        self.wait(2)
+
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)])
+        self.play(A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7))
+        self.play(A21.animate.set_fill(colors[0], opacity=0.7), A22.animate.set_fill(colors[2], opacity=0.7))
+        self.wait()
+
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)])
+        self.play(A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[i], opacity=0))
+        self.play(A21.animate.set_fill(colors[0], opacity=0), A22.animate.set_fill(colors[1], opacity=0))
+        self.wait()
+
+        # third phase
+        self.play(GrowFromCenter(A3))
+        self.wait(2)
+
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)])
+        self.play(A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7))
+        self.play(A21.animate.set_fill(colors[0], opacity=0.7), A22.animate.set_fill(colors[2], opacity=0.7))
+        self.play(A31.animate.set_fill(colors[1], opacity=0.7), A32.animate.set_fill(colors[3], opacity=0.7))
+        self.wait()
+
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)])
+        self.play(A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[1], opacity=0))
+        self.play(A21.animate.set_fill(colors[0], opacity=0), A22.animate.set_fill(colors[1], opacity=0))
+        self.play(A31.animate.set_fill(colors[1], opacity=0), A32.animate.set_fill(colors[3], opacity=0))
+        self.wait()
+
+        # last phase
+        self.play(GrowFromCenter(A4))
+        self.wait(2)
+
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)])
+        self.play(A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7))
+        self.play(A21.animate.set_fill(colors[0], opacity=0.7), A22.animate.set_fill(colors[2], opacity=0.7))
+        self.play(A31.animate.set_fill(colors[1], opacity=0.7), A32.animate.set_fill(colors[3], opacity=0.7))
+        self.play(A41.animate.set_fill(colors[1], opacity=0.7), A42.animate.set_fill(colors[2], opacity=0.7))
+        self.wait()
+
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)])
+        self.play(A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[1], opacity=0))
+        self.play(A21.animate.set_fill(colors[0], opacity=0), A22.animate.set_fill(colors[1], opacity=0))
+        self.play(A31.animate.set_fill(colors[1], opacity=0), A32.animate.set_fill(colors[3], opacity=0))
+        self.play(A41.animate.set_fill(colors[1], opacity=0), A42.animate.set_fill(colors[2], opacity=0))
+        self.wait()
+
+""" --- Proof m(d) = 2^(d-1) ---"""
+
+class ProofTwoColoring(Scene):
+    def construct(self):
+        print('hey')
+
+
 """ --- Ramsey numbers --- """
 
 class Ramsey(Scene):
-    def construct():
+    def construct(self):
         title2 = MarkupText("Ramsey Numbers").to_edge(UP, buff=0.5)
 
         self.play(Transform(title, title2))
