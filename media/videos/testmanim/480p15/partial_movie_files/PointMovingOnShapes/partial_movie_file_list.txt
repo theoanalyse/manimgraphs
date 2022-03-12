@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/PointMovingOnShapes/3163782288_1908004001_1559485915.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/PointMovingOnShapes/2201830969_791709962_3826825815.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/PointMovingOnShapes/2201830969_3683205438_625447078.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/PointMovingOnShapes/2201830969_3760086186_3826825815.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/PointMovingOnShapes/2201830969_3638504700_1993984003.mp4'

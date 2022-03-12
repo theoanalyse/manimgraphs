@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/LabeledModifiedGraph/3163782288_4028968067_223132457.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/LabeledModifiedGraph/2201830969_3273366307_127965357.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/LabeledModifiedGraph/2201830969_1355253570_935412112.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/LabeledModifiedGraph/2201830969_1161862757_2223270798.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/LabeledModifiedGraph/2201830969_4160205052_2261162883.mp4'

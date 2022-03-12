@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/MovingFrameBox/3163782288_333427961_223132457.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/MovingFrameBox/2201830969_706271651_3601593846.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/MovingFrameBox/2201830969_3638504700_4257670616.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/MovingFrameBox/2201830969_2549368947_3216195725.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/480p15/partial_movie_files/MovingFrameBox/2201830969_3638504700_2399178742.mp4'
