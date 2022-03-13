@@ -367,7 +367,7 @@ class ProofTwoColoring(Scene):
         self.play(FadeIn(equiv))
         self.wait()
         self.play(FadeIn(g2))
-        self.wait(3)
+        self.wait(4)
 
 
 
