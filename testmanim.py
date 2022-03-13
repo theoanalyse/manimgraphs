@@ -263,7 +263,9 @@ class FirstExercise(Scene):
 
 class ProofTwoColoring(Scene):
     def construct(self):
-        print('hey')
+        # Step 1 : Take a ground set X
+
+        # Step 2 : Define a family of d-sets
 
 
 """ --- Ramsey numbers --- """
