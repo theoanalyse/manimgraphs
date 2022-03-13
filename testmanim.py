@@ -263,8 +263,96 @@ class FirstExercise(Scene):
 
 class ProofTwoColoring(Scene):
     def construct(self):
-        # Step 1 : Take a ground set X
 
+        title = MarkupText("Goal of the proof").to_edge(UP, buff=0.5)
+        h_line = Line(LEFT, RIGHT).scale(config.frame_width/2-1).next_to(title, DOWN)
+
+        self.play(Create(h_line), Write(title), run_time=2)
+        self.wait()
+
+        # Step 1 : Goal + Chain of equivalences between each steps
+        myTemplate = TexTemplate()
+        myTemplate.add_to_preamble(r"\usepackage{amsmath}")
+
+        tex1 = Tex(r"$\mathbb{P} \left( \{ \mathcal{F} \text{ is 2-colorable } \} \right) > 0$")
+        tex2 = Tex(r"$\mathbb{P} \left( \ ^\lnot \{ \text{ exists monochromatic } A_i \text{ in } \mathcal{F} \} \right) > 0$")
+        tex3 = Tex(r"$1 - \mathbb{P} \left( \{ \text{ exists monochromatic } A_i \text{ in } \mathcal{F} \} \right) > 0$")
+        tex4 = Tex(r"$\mathbb{P} \left( \{ \text{ exists monochromatic } A_i \text{ in } \mathcal{F} \} \right) < 1$")
+        tex5 = Tex(r"$\mathbb{P} \left( \bigvee_{A_i} \{ A_i \text{ is monochromatic } \} \right) < 1$")
+        tex6 = Tex(r"$\mathbb{P} \left( \bigvee_{A_i} E_{A_i} \right) < 1$")
+
+        rect1 = SurroundingRectangle(tex1, color=BLUE, buff = .4)
+        rect2 = SurroundingRectangle(tex2, color=BLUE, buff = .4)
+        rect3 = SurroundingRectangle(tex3, color=BLUE, buff = .4)
+        rect4 = SurroundingRectangle(tex4, color=BLUE, buff = .4)
+        rect5 = SurroundingRectangle(tex5, color=BLUE, buff = .4)
+        rect6 = SurroundingRectangle(tex6, color=BLUE, buff = .4)
+
+        texs = Group(tex1, tex2, tex3, tex4, tex5, tex6)
+        rects = Group(rect1, rect2, rect3, rect4, rect5, rect6)
+
+        self.play(Create(texs[0]), Create(rects[0]), run_time=1)
+        self.wait()
+
+        for i in range(len(texs)-1):
+            self.play(ReplacementTransform(texs[i], texs[i+1]), ReplacementTransform(rects[i], rects[i+1]))
+            self.wait()
+
+        # Now zoom on the last text and modify it using sigma-additivity
+
+        prob = Tex(r"$\mathbb{P} \left( \bigvee_{A_i} E_{A_i} \right)$").scale(1.7).to_edge(LEFT, buff=1)
+
+        sigma1 = Tex(r"$ < \sum_{A_i} \mathbb{P} \left( E_{A_i} \right)$").scale(1.7).next_to(prob, RIGHT)
+        sigma2 = Tex(r"$ < \sum_{A_i} \mathbb{P} \left( R_{A_i} \vee B_{A_i} \right)$").scale(1.7).next_to(prob, RIGHT)
+        sigma3 = Tex(r"$ < \sum_{A_i} \left( \mathbb{P} \left( R_{A_i} \right) + \mathbb{P} \left( B_{A_i}  \right) \right)$").scale(1.4).next_to(prob, RIGHT)
+        sigma4 = Tex(r"$ < \sum_{A_i} 2 \cdot \mathbb{P} \left( R_{A_i} \right) $").scale(1.7).next_to(prob, RIGHT)
+        sigma5 = Tex(r"$ < \sum_{A_i} 2 \cdot \left( \frac{1}{2} \right)^d $").scale(1.7).next_to(prob, RIGHT)
+        sigma6 = Tex(r"$ < \sum_{A_i} 2 \cdot 2^{-d} $").scale(1.7).next_to(prob, RIGHT)
+        sigma7 = Tex(r"$ < \sum_{A_i} 2^{1-d} $").scale(1.7).next_to(prob, RIGHT)
+        sigma8 = Tex(r"$ < |\mathcal{F}| \cdot 2^{1-d} $").scale(1.7).next_to(prob, RIGHT)
+        sigma9 = Tex(r" $ < $ ", r" $ m $ ", r" $ \cdot \  2^{1-d} $ ").scale(1.7).next_to(prob, RIGHT)
+
+        g = Group(prob.copy(), sigma9.copy()).move_to(ORIGIN).scale(1.3)
+
+        brace = Tex(r"$\underbrace{\ }$").scale(1.2).next_to(g[1][1], DOWN)
+        m = Tex(r"set $m = 2^{d-1}$").scale(1.2).next_to(brace, DOWN)
+
+        one = Tex(r"< 1").scale(2.3).next_to(g[0], RIGHT)
+
+        self.play(Uncreate(rect6))
+        self.play(ReplacementTransform(tex6, prob))
+
+        self.wait()
+        self.play(Write(sigma1))
+        self.wait()
+        self.play(ReplacementTransform(sigma1, sigma2))
+        self.wait()
+        self.play(ReplacementTransform(sigma2, sigma3))
+        self.wait()
+        self.play(ReplacementTransform(sigma3, sigma4))
+        self.wait()
+        self.play(ReplacementTransform(sigma4, sigma5))
+        self.wait()
+        self.play(ReplacementTransform(sigma5, sigma6))
+        self.wait()
+        self.play(ReplacementTransform(sigma6, sigma7))
+        self.wait()
+        self.play(ReplacementTransform(sigma7, sigma8))
+        self.wait()
+        self.play(ReplacementTransform(sigma8, sigma9))
+        self.wait()
+        self.play(FadeOut(prob), FadeOut(sigma9))
+        self.play(FadeIn(g, shift=DOWN))
+        self.play(FadeIn(m, shift=UP), FadeIn(brace, shift=UP))
+        self.wait()
+
+        result = Group(g[0], one)
+        rect = SurroundingRectangle(result, buff=0.4, color=BLUE)
+        final = Group(result, rect)
+
+        self.play(ReplacementTransform(m, one), ReplacementTransform(brace, one), ReplacementTransform(g[1], one), Create(rect))
+        self.play(final.animate.move_to(ORIGIN))
+        self.wait()
         # Step 2 : Define a family of d-sets
 
 
