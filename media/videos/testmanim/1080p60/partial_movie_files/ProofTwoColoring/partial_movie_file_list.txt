@@ -45,3 +45,4 @@ file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/1080p6
 file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/1080p60/partial_movie_files/ProofTwoColoring/34786186_2960225799_3138737562.mp4'
 file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/1080p60/partial_movie_files/ProofTwoColoring/34786186_3638504700_4082983427.mp4'
 file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/1080p60/partial_movie_files/ProofTwoColoring/34786186_1573696322_109918237.mp4'
+file 'file:/Users/theo/Documents/python_code/manim/media/videos/testmanim/1080p60/partial_movie_files/ProofTwoColoring/34786186_826654608_1624495286.mp4'
