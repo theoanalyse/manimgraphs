@@ -264,7 +264,7 @@ class FirstExercise(Scene):
 class ProofTwoColoring(Scene):
     def construct(self):
 
-        title = MarkupText("Goal of the proof").to_edge(UP, buff=0.5)
+        title = MarkupText("Goal of the proof").to_edge(UP, buff=1)
         h_line = Line(LEFT, RIGHT).scale(config.frame_width/2-1).next_to(title, DOWN)
 
         self.play(Create(h_line), Write(title), run_time=2)
@@ -298,6 +298,8 @@ class ProofTwoColoring(Scene):
             self.play(ReplacementTransform(texs[i], texs[i+1]), ReplacementTransform(rects[i], rects[i+1]))
             self.wait()
 
+        the_proof = MarkupText("The Proof").to_edge(UP, buff=1)
+        self.play(ReplacementTransform(title, the_proof))
         # Now zoom on the last text and modify it using sigma-additivity
 
         prob = Tex(r"$\mathbb{P} \left( \bigvee_{A_i} E_{A_i} \right)$").scale(1.7).to_edge(LEFT, buff=1)
@@ -312,7 +314,7 @@ class ProofTwoColoring(Scene):
         sigma8 = Tex(r"$ < |\mathcal{F}| \cdot 2^{1-d} $").scale(1.7).next_to(prob, RIGHT)
         sigma9 = Tex(r" $ < $ ", r" $ m $ ", r" $ \cdot \  2^{1-d} $ ").scale(1.7).next_to(prob, RIGHT)
 
-        g = Group(prob.copy(), sigma9.copy()).move_to(ORIGIN).scale(1.3)
+        g = Group(prob.copy(), sigma9.copy()).move_to(ORIGIN + 0.5*UP).scale(1.3)
 
         brace = Tex(r"$\underbrace{\ }$").scale(1.2).next_to(g[1][1], DOWN)
         m = Tex(r"set $m = 2^{d-1}$").scale(1.2).next_to(brace, DOWN)
@@ -347,13 +349,28 @@ class ProofTwoColoring(Scene):
         self.wait()
 
         result = Group(g[0], one)
-        rect = SurroundingRectangle(result, buff=0.4, color=BLUE)
+        rect = SurroundingRectangle(result, buff=0.1, color=BLUE)
         final = Group(result, rect)
 
         self.play(ReplacementTransform(m, one), ReplacementTransform(brace, one), ReplacementTransform(g[1], one), Create(rect))
-        self.play(final.animate.move_to(ORIGIN))
+        self.play(final.animate.move_to(ORIGIN + UP))
         self.wait()
-        # Step 2 : Define a family of d-sets
+
+        equiv = Tex(r"$\Longleftrightarrow$").rotate(PI/2).scale(1.3).next_to(final, DOWN)
+
+        prop = Tex(r"$\mathbb{P} \left( \{ \mathcal{F} \text{ is 2-colorable } \} \right) > 0$").scale(1.9)
+        rect_prop = SurroundingRectangle(prop, buff=0.1)
+
+        g2 = Group(prop, rect_prop).next_to(equiv, DOWN)
+
+
+        self.play(FadeIn(equiv))
+        self.wait()
+        self.play(FadeIn(g2))
+
+
+
+
 
 
 """ --- Ramsey numbers --- """
