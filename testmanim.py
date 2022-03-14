@@ -203,60 +203,60 @@ class FirstExercise(Scene):
         colors = [RED, BLUE, BLUE, RED]
 
         # first step
-        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)])
-        self.play(A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7))
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)],
+        A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7))
         self.wait()
 
-        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)])
-        self.play(A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[1], opacity=0))
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)],
+        A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[1], opacity=0))
         self.wait()
 
         # second phase
         self.play(GrowFromCenter(A2))
         self.wait(2)
 
-        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)])
-        self.play(A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7))
-        self.play(A21.animate.set_fill(colors[0], opacity=0.7), A22.animate.set_fill(colors[2], opacity=0.7))
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)],
+        A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7),
+        A21.animate.set_fill(colors[0], opacity=0.7), A22.animate.set_fill(colors[2], opacity=0.7))
         self.wait()
 
-        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)])
-        self.play(A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[i], opacity=0))
-        self.play(A21.animate.set_fill(colors[0], opacity=0), A22.animate.set_fill(colors[1], opacity=0))
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)],
+        A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[i], opacity=0),
+        A21.animate.set_fill(colors[0], opacity=0), A22.animate.set_fill(colors[1], opacity=0))
         self.wait()
 
         # third phase
         self.play(GrowFromCenter(A3))
         self.wait(2)
 
-        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)])
-        self.play(A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7))
-        self.play(A21.animate.set_fill(colors[0], opacity=0.7), A22.animate.set_fill(colors[2], opacity=0.7))
-        self.play(A31.animate.set_fill(colors[1], opacity=0.7), A32.animate.set_fill(colors[3], opacity=0.7))
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)],
+        A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7),
+        A21.animate.set_fill(colors[0], opacity=0.7), A22.animate.set_fill(colors[2], opacity=0.7),
+        A31.animate.set_fill(colors[1], opacity=0.7), A32.animate.set_fill(colors[3], opacity=0.7))
         self.wait()
 
-        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)])
-        self.play(A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[1], opacity=0))
-        self.play(A21.animate.set_fill(colors[0], opacity=0), A22.animate.set_fill(colors[1], opacity=0))
-        self.play(A31.animate.set_fill(colors[1], opacity=0), A32.animate.set_fill(colors[3], opacity=0))
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)],
+        A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[1], opacity=0),
+        A21.animate.set_fill(colors[0], opacity=0), A22.animate.set_fill(colors[1], opacity=0),
+        A31.animate.set_fill(colors[1], opacity=0), A32.animate.set_fill(colors[3], opacity=0))
         self.wait()
 
         # last phase
         self.play(GrowFromCenter(A4))
         self.wait(2)
 
-        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)])
-        self.play(A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7))
-        self.play(A21.animate.set_fill(colors[0], opacity=0.7), A22.animate.set_fill(colors[2], opacity=0.7))
-        self.play(A31.animate.set_fill(colors[1], opacity=0.7), A32.animate.set_fill(colors[3], opacity=0.7))
-        self.play(A41.animate.set_fill(colors[1], opacity=0.7), A42.animate.set_fill(colors[2], opacity=0.7))
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0.7) for i in range(4)],
+        A11.animate.set_fill(colors[0], opacity=0.7), A12.animate.set_fill(colors[1], opacity=0.7),
+        A21.animate.set_fill(colors[0], opacity=0.7), A22.animate.set_fill(colors[2], opacity=0.7),
+        A31.animate.set_fill(colors[1], opacity=0.7), A32.animate.set_fill(colors[3], opacity=0.7),
+        A41.animate.set_fill(colors[1], opacity=0.7), A42.animate.set_fill(colors[2], opacity=0.7))
         self.wait()
 
-        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)])
-        self.play(A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[1], opacity=0))
-        self.play(A21.animate.set_fill(colors[0], opacity=0), A22.animate.set_fill(colors[1], opacity=0))
-        self.play(A31.animate.set_fill(colors[1], opacity=0), A32.animate.set_fill(colors[3], opacity=0))
-        self.play(A41.animate.set_fill(colors[1], opacity=0), A42.animate.set_fill(colors[2], opacity=0))
+        self.play(*[sqs[i].animate.set_fill(colors[i], opacity=0) for i in range(4)],
+        A11.animate.set_fill(colors[0], opacity=0), A12.animate.set_fill(colors[1], opacity=0),
+        A21.animate.set_fill(colors[0], opacity=0), A22.animate.set_fill(colors[1], opacity=0),
+        A31.animate.set_fill(colors[1], opacity=0), A32.animate.set_fill(colors[3], opacity=0),
+        A41.animate.set_fill(colors[1], opacity=0), A42.animate.set_fill(colors[2], opacity=0))
         self.wait()
 
 """ --- Proof m(d) = 2^(d-1) ---"""
